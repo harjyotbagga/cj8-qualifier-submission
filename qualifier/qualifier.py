@@ -17,12 +17,16 @@ def make_table(rows: List[List[Any]], labels: Optional[List[Any]] = None, center
     max_length = [0 for i in range(n_cols)]
 
     # Checking the dimensions of the input, to make sure entries are correct.
-    if labels:
-        if (len(labels) != n_cols):
-            raise Exception("The dimensions of rows are unequal. Please recheck the input.")
-    for row in rows:
-        if (len(row) != n_cols):
-            raise Exception("The dimensions of rows are unequal. Please recheck the input.")
+    try:
+        if labels:
+            if (len(labels) != n_cols):
+                raise Exception("The dimensions of rows are unequal. Please recheck the input.")
+        for row in rows:
+            if (len(row) != n_cols):
+                raise Exception("The dimensions of rows are unequal. Please recheck the input.")
+    except Exception as e:
+        print(e)
+        exit(0)
     
     # Taking the max_length of each column
     if labels:
